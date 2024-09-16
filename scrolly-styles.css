@@ -1,6 +1,37 @@
+@font-face {
+    font-family: 'BatonTurbo';
+    src: url('./fonts/BatonTurboWeb-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'BatonTurbo';
+    src: url('./fonts/BatonTurboWeb-Medium.woff') format('woff');
+    font-style: bold;
+  }
+
+body {
+    margin: 0;
+}
+
+  iframe,
+  img,
+  video {
+    max-width: 100%;
+  }
+
+  iframe {
+    padding-bottom: 1.2em;
+  }
+
+  .full-width figure {
+    text-align: center;
+  }
+
+  
 .scrolly-container {
     position: relative;
-    margin-bottom: 1.2em;
 }
 
 .sticky-thing {
@@ -58,7 +89,6 @@
 }
 
 .step {
-    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,7 +97,22 @@
 
 .step p {
     text-align: left;
+    padding: 1.3rem;
+    font-size: 1rem;
+    line-height: 165%;
+    font-family: 'BatonTurbo', sans-serif;
+    font-weight: normal;
+    color: white;
+    background-color: #07184D;
 }
+
+.step p span {
+    background-color: blueviolet;
+    font-family: 'BatonTurbo', sans-serif;
+    font-weight: bold;
+    padding: 1px 4px;
+    display: inline-block;
+  }
 
 .step p:last-child {
     padding: 0;
@@ -88,6 +133,18 @@
     object-fit: cover;
     display: block;  
 }
+
+  /* margin on mobile */
+  @media (max-width: 640px) {
+    body {
+      font-size: 18px;
+    }
+
+    .content {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+    }
+  }
 
 /* When it's less than 700 pixels wide, do normal scrollytelling */
 
