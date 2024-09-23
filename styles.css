@@ -1,35 +1,34 @@
-@font-face {
-    font-family: 'BatonTurbo';
-    src: url('./fonts/BatonTurboWeb-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'BatonTurbo';
-    src: url('./fonts/BatonTurboWeb-Medium.woff') format('woff');
-    font-style: bold;
-  }
+:root,
+body {
+    font-family: 'BatonTurbo Regular', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+    font-family: 'BatonTurbo Bold', inherit;
+}
 
 body {
     margin: 0;
 }
 
-  iframe,
-  img,
-  video {
-    max-width: 100%;
-  }
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
-  iframe {
-    padding-bottom: 1.2em;
-  }
-
-  .full-width figure {
-    text-align: center;
-  }
-
-  
 .scrolly-container {
     position: relative;
 }
@@ -39,23 +38,21 @@ body {
     top: 0;
     transform: translate(0px, 0px);
     z-index: 1;
-    height: 100svh;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
     margin: 0;
     overflow: hidden;
-    /* Center everything inside */
-    /* display: flex;
-    justify-content: center;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden; */
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .sticky-thing > img {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     object-fit: cover;
-    display: block;  
+    display: block;
 }
 
 .video-container {
@@ -67,7 +64,8 @@ body {
 .scrolly-container video {
     position: absolute;
     top: 0;
-    height: auto;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
 }
 
@@ -75,17 +73,18 @@ body {
     position: absolute;
     top: 0;
     max-width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .steps-container {
-    transform: translate3d(0,0,0);
     position: relative;
     padding: 0;
     z-index: 10;
-    max-width: 35rem;
+    max-width: 90vw;
     margin: 0 auto;
     padding-bottom: 4em;
+    margin-top: -80vh;
 }
 
 .step {
@@ -93,6 +92,8 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 50svh;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .step p {
@@ -103,7 +104,10 @@ body {
     font-family: 'BatonTurbo', sans-serif;
     font-weight: normal;
     color: white;
-    background-color: #07184D;
+    background-color: #07184d;
+    width: auto;
+    margin-right: auto;
+    max-width: 80vw;
 }
 
 .step p span {
@@ -112,39 +116,51 @@ body {
     font-weight: bold;
     padding: 1px 4px;
     display: inline-block;
-  }
-
-.step p:last-child {
-    padding: 0;
-}
-
-.step > * {
-    width: 700px;
-    margin-left: 1.3em;
-    margin-right: 1.3em;
-    text-align: center;
-    padding: 1.2em !important;
-    background-color: #ffa880cc;
 }
 
 .sticky-thing > canvas {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
-    display: block;  
+    display: block;
 }
 
-  /* margin on mobile */
-  @media (max-width: 640px) {
-    body {
-      font-size: 18px;
+@media (max-width: 640px) {
+    .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
     }
 
-    .content {
-      padding-left: 0.5em;
-      padding-right: 0.5em;
+    .scrolly-container {
+        height: auto;
+        min-height: 100vh;
     }
-  }
+
+    .sticky-thing {
+        position: relative;
+        height: 100vh;
+    }
+
+    .steps-container {
+        margin-top: -80vh;
+        padding-top: 2em;
+    }
+
+    .step {
+        margin-bottom: 2em;
+        height: 90vh;
+    }
+
+    .step p {
+        font-size: 1rem;
+        padding: 1em;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 14px;
+    }
+}
 
 /* When it's less than 700 pixels wide, do normal scrollytelling */
 
@@ -153,7 +169,7 @@ body {
         display: flex;
     }
 
-    .scrolly-container.side-by-side>div {
+    .scrolly-container.side-by-side > div {
         flex-basis: 0;
         flex-grow: 1;
         flex-shrink: 1;
@@ -172,4 +188,16 @@ body {
         order: 1;
         flex-grow: 2;
     }
+}
+
+/* Ensure content is visible */
+.scrolly-container * {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Improve performance */
+.sticky-thing,
+.step {
+    will-change: transform;
 }

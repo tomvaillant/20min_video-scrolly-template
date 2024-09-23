@@ -1,73 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>20 Minuten: Video template</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://www.20min.ch/static-assets/batonturbo.css" />
+        <link rel="stylesheet" href="./styles.css" />
+        
+        <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/scrolly-video@latest/dist/scrolly-video.js"></script>
+    </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>20 Minuten: Video template</title>
-  <link href="scrolly-styles.css" rel="stylesheet">
-  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/scrolly-video@latest/dist/scrolly-video.js"></script>
-</head>
+    <body>
+        <!-- <div id="preloader">Loading...</div>
+        <div id="content" style="opacity: 0; transition: opacity 0.3s ease;">
+        </div> -->
+        <section id="scrolly-video" class="scrolly-container">
+            <div class="sticky-thing"></div>
+            <div class="steps-container">
+                <div class="step" id="step-first">
+                    <p>Apenzeller-Inneroden is just <span>bonkers</span>.</p>
+                </div>
+                <div class="step" id="step-second">
+                    <p>For some reason it's sprinkled across the Swiss countryside.</p>
+                </div>
+                <div class="step" id="step-third">
+                    <p>We'll need to investigate to find out why.</p>
+                </div>
+                <div class="step" id="step-fourth">
+                    <p>This is a church, in a different Kanton but still Apenzeller-Inneroden.</p>
+                </div>
+                <div class="step" id="step-fifth">
+                    <p>This is also a church, in a different Kanton but still Apenzeller-Inneroden.</p>
+                </div>
+            </div>
+        </section>
 
-<body>
-  <section id="scrolly-video" class="scrolly-container">
-    <div class="sticky-thing">
-    </div>
-    <div class="steps-container">
-      <div class="step" id="step-first">
-        <p>Apenzeller-Inneroden is just <span>bonkers</span>.</p>
-      </div>
-      <div class="step" id="step-second">
-        <p>For some reason it's sprinkled across the Swiss countryside.</p>
-      </div>
-      <div class="step" id="step-third">
-        <p>We'll need to investigate to find out why.</p>
-      </div>
-      <div class="step" id="step-fourth">
-        <p>This is a church, in a different Kanton but still Apenzeller-Inneroden.</p>
-      </div>
-      <div class="step" id="step-fifth">
-        <p>This is also a church, in a different Kanton but still Apenzeller-Inneroden.</p>
-      </div>
-    </div>
-  </section>
+        <script>
+            // function initScrollyVideo() {
+                
+            // }
+            new ScrollyVideo({
+                    scrollyVideoContainer: document.querySelector('#scrolly-video .sticky-thing'),
+                    src: './assets/video.mp4',
+                    full: true,
+                    cover: true,
+                    posterFrame: 0,
+            });
 
-  <script>
-    /*
-    Different videos need different things - does the reader need to see
-    the entire screen of the video, or you want to make sure it covers the
-    entire window?
+            // Dynamic height
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            window.addEventListener('resize', () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            });
 
-    You can experiment with yours by removing the // from the full and
-    cover options below to see how it looks with your videos. 
-   
-    You can see parameters at 
-    https://github.com/dkaoster/scrolly-video?tab=readme-ov-file#-options--attributes
+            // window.addEventListener('load', function () {
+            //     const preloader = document.getElementById('preloader');
+            //     const content = document.getElementById('content');
+            //     initScrollyVideo();
 
-    You might also need to adjust object-fit being 'cover' vs 'contain' in the CSS below
-
-    Be sure to check mobile!!
-    */
-    new ScrollyVideo({
-      scrollyVideoContainer: document.querySelector("#scrolly-video .sticky-thing"),
-      src: "./assets/video.mp4",
-      full: true,
-      // cover: true
-    });
-  </script>
-  <style>
-    .step {
-      height: 100vh;
-      margin-bottom: 0;
-    }
-
-    /* .sticky-thing > canvas {
-      object-fit: cover;
-    } */
-  </style>
-
-</body>
-
+            //     setTimeout(() => {
+            //         preloader.style.display = 'none';
+            //         content.style.display = 'block';
+            //         content.style.opacity = '1';
+            //     }, 1300);
+            // });
+        </script>
+    </body>
 </html>
